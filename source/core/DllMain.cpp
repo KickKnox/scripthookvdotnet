@@ -18,7 +18,7 @@ namespace WinForms = System::Windows::Forms;
 [assembly:AssemblyDescription("An ASI plugin for Grand Theft Auto V, which allows running scripts written in any .NET language in-game.")];
 [assembly:AssemblyCompany("crosire & contributors")];
 [assembly:AssemblyProduct("ScriptHookVDotNet")];
-[assembly:AssemblyCopyright("Copyright © 2015 crosire")];
+[assembly:AssemblyCopyright("Copyright Â© 2015 crosire")];
 [assembly:AssemblyVersion(SHVDN_VERSION)];
 [assembly:AssemblyFileVersion(SHVDN_VERSION)];
 // Sign with a strong name to distinguish from older versions and cause .NET framework runtime to bind the correct assemblies
@@ -168,6 +168,10 @@ static void ScriptHookVDotnet_ManagedInit()
 
 	try
 	{
+		// debug
+		SHVDN::Log::Message(SHVDN::Log::Level::Error, "SHVDN::Console::typeid->Assembly->Location: ", SHVDN::Console::typeid->Assembly->Location);
+		SHVDN::Log::Message(SHVDN::Log::Level::Error, "SHVDN::Console::typeid->FullName: ", SHVDN::Console::typeid->FullName);
+		
 		// Instantiate console inside script domain, so that it can access the scripting API
 		console = (SHVDN::Console ^)domain->AppDomain->CreateInstanceFromAndUnwrap(
 			SHVDN::Console::typeid->Assembly->Location, SHVDN::Console::typeid->FullName);
