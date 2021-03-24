@@ -12,4 +12,4 @@
        - run: .\tools\install_sdk.ps1
        - run: msbuild ScriptHookVDotNet.sln
        - store_artifacts:
-          path: .\bin\Release
+          path: .
