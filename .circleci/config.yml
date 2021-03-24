@@ -10,8 +10,14 @@
      steps:
        - checkout
        - run: tools/install_sdk.ps1
+       
        - run: msbuild ScriptHookVDotNet.sln /t:Build /p:Configuration=Release
        - run: del bin/Release/*.metagen
-       - run: powershell Compress-Archive bin/Release/* scripthookvdotnet_debug.zip
+       - run: powershell Compress-Archive bin/Release/* scripthookvdotnet_release.zip
+       - store_artifacts:
+          path: scripthookvdotnet_release.zip
+       
+       - run: msbuild ScriptHookVDotNet.sln /t:Build /p:Configuration=Debug
+       - run: powershell Compress-Archive bin/Debug/* scripthookvdotnet_debug.zip
        - store_artifacts:
           path: scripthookvdotnet_debug.zip
