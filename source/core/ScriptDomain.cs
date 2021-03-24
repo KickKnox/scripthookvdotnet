@@ -136,9 +136,11 @@ namespace SHVDN
 			if (!Path.IsPathRooted(scriptPath))
 				scriptPath = Path.Combine(Path.GetDirectoryName(basePath), scriptPath);
 			scriptPath = Path.GetFullPath(scriptPath);
+			Log.Message(Log.Level.Error, "ScriptDomain.Load scriptPath: ", scriptPath);
 
 			// Create application and script domain for all the scripts to reside in
 			var name = "ScriptDomain_" + (scriptPath.GetHashCode() ^ Environment.TickCount).ToString("X");
+			Log.Message(Log.Level.Error, "ScriptDomain.Load name: ", name);
 			var setup = new AppDomainSetup();
 			setup.ShadowCopyFiles = "true"; // Copy assemblies into memory rather than locking the file, so they can be updated while the domain is still loaded
 			setup.ShadowCopyDirectories = scriptPath; // Only shadow copy files in the scripts directory
@@ -164,7 +166,8 @@ namespace SHVDN
 
 			// Remove resolve handler again
 			AppDomain.CurrentDomain.AssemblyResolve -= HandleResolve;
-
+			
+			Log.Message(Log.Level.Error, "ScriptDomain.Load scriptdomain.ToString(): ", scriptdomain.ToString());
 			return scriptdomain;
 		}
 
