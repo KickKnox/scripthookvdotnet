@@ -9,7 +9,7 @@
     
      steps:
        - checkout
-       - run: .\tools\install_sdk.ps1
-       - run: msbuild ScriptHookVDotNet.sln
+       - run: tools/install_sdk.ps1
+       - run: msbuild ScriptHookVDotNet.sln /t:Build /p:Configuration=Release
        - store_artifacts:
-          path: .
+          path: bin/Release/
