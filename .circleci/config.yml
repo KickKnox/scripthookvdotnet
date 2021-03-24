@@ -11,5 +11,6 @@
        - checkout
        - run: tools/install_sdk.ps1
        - run: msbuild ScriptHookVDotNet.sln /t:Build /p:Configuration=Release
+       - run: powershell Compress-Archive bin/Release scripthookvdotnet_debug.zip
        - store_artifacts:
-          path: bin/Release/
+          path: scripthookvdotnet_debug.zip
