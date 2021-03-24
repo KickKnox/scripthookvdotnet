@@ -163,12 +163,19 @@ static void ScriptHookVDotnet_ManagedInit()
 
 	// Create a separate script domain
 	domain = SHVDN::ScriptDomain::Load(".", scriptPath);
-	if (domain == nullptr)
+	if (domain == nullptr) {
+		SHVDN::Log::Message(SHVDN::Log::Level::Error, "domain == nullptr");
 		return;
+	}
+	if (domain is null) {
+		SHVDN::Log::Message(SHVDN::Log::Level::Error, "domain is null");
+		return;
+	}
 
 	try
 	{
 		// debug
+		SHVDN::Log::Message(SHVDN::Log::Level::Error, "domain->Name: ", domain->Name);
 		SHVDN::Log::Message(SHVDN::Log::Level::Error, "SHVDN::Console::typeid->Assembly->Location: ", SHVDN::Console::typeid->Assembly->Location);
 		SHVDN::Log::Message(SHVDN::Log::Level::Error, "SHVDN::Console::typeid->FullName: ", SHVDN::Console::typeid->FullName);
 		
