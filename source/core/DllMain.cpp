@@ -167,7 +167,10 @@ static void ScriptHookVDotnet_ManagedInit()
 		SHVDN::Log::Message(SHVDN::Log::Level::Error, "domain == nullptr");
 		return;
 	}
-	SHVDN::Log::Message(SHVDN::Log::Level::Error, "domain->ToString()", domain->ToString());
+	SHVDN::Log::Message(SHVDN::Log::Level::Error, "domain->ToString(): ", domain->ToString());
+	
+	if (domain->AppDomain == nullptr) SHVDN::Log::Message(SHVDN::Log::Level::Error, "domain->AppDomain == nullptr");
+	SHVDN::Log::Message(SHVDN::Log::Level::Error, "domain->AppDomain->ToString(): ", domain->AppDomain->ToString());
 
 	try
 	{
